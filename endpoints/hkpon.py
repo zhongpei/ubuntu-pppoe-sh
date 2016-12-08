@@ -1,7 +1,7 @@
 #!coding: utf-8
 """
 Usage:
-    main.py  <username> <password> [--interface=<interface>] [--output=<output>]
+    hkpon  <username> <password> [--interface=<interface>] [--output=<output>]
 
 Options:
     -h --help                   Show help
