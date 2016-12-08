@@ -17,7 +17,7 @@ user "{username}"
 # This line should work fine if this computer is the only one accessing
 # the Internet through this DSL connection. This is the right line to use
 # for most people.
-pty "/usr/sbin/pppoe -I eth0 -T 80 -m 1452"
+pty "/usr/sbin/pppoe -I {interface} -T 80 -m 1452"
 
 # An even more conservative version of the previous line, if things
 # don't work using -m 1452...

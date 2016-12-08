@@ -5,7 +5,7 @@ Usage:
 
 Options:
     -h --help                   Show help
-    -i --interface=<interface>  pppoe interface [default: eth0]
+    -i --interface=<interface>  pppoe interface [default: eth1]
     -o --output=<output>        output file
 """
 
@@ -46,22 +46,22 @@ def writeconf(template,target,**kw):
             return True
     return False
 
-def init_pppoe(args , status_loop = 10):
+def init_pppoe(args , status_loop = 60):
+    c = Commander()
+    c.command2("poff -a")
+    c.command2("killall -9 pppoe")
+
     if args.get("<username>") is None:
         logging.error("not have pppoe-username")
         return False,"pppoe param error"
     if args.get('<password>') is None:
         logging.error("not have password")
         return False,"pppoe param error"
-    ok = writeconf("/etc/ppp/peers/dsl-provider.tp","/etc/ppp/peers/dsl-provider",username=args["<username>"])
+    ok = writeconf("/etc/ppp/peers/dsl-provider.tp","/etc/ppp/peers/dsl-provider",username=args["<username>"],interface=args["--interface"])
     if not ok:
         logging.error("write conf /etc/ppp/peers/dsl-provider failed")
         return False,"write conf /etc/ppp/peers/dsl-provider failed"
 
-    ok = writeconf("/etc/ppp/peers/dsl-provider.tp","/etc/ppp/peers/dsl-provider",interface=args["--interface"])
-    if not ok:
-        logging.error("write conf /etc/ppp/peers/dsl-provider failed")
-        return False,"write conf /etc/ppp/peers/dsl-provider failed"
 
     ok = writeconf("/etc/ppp/pap-secrets.tp","/etc/ppp/pap-secrets",username=args["<username>"],password=args['<password>'])
     if not ok:

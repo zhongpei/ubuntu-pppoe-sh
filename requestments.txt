@@ -1,3 +1,2 @@
 docopt
 netifaces
-pyroute2
