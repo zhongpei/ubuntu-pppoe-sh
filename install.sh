@@ -12,7 +12,7 @@ cp -r ./endpoints /endpoints
 
 apt-get update -y
 
-apt-get install -y -q gcc make wget python python-pip pppoe git
+apt-get install -y -q gcc make wget python python-pip pppoe git python-dev
 apt-get install -y -q net-tools pppoeconf
 apt-get install -y -q rsyslog
 pip install -r requestments.txt -i http://pypi.douban.com/simple/ 

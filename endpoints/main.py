@@ -13,29 +13,8 @@ import sys
 from docopt import docopt
 import time
 from command import Commander
-import netifaces
 import logging
 
-
-def add_route(packetix_host):
-    import socket
-    from socket import AF_INET
-    from pyroute2 import IPRoute
-    gws = netifaces.gateways()
-    default_gw = gws['default'][netifaces.AF_INET]
-    logging.INFO('default gw %s' + str(default_gw))
-    dst_ip = socket.gethostbyname(packetix_host)
-    logging.INFO('packetix server : %s', dst_ip)
-    ip = IPRoute()
-    ip.route(
-        'add',
-        dst=dst_ip,
-        gateway=default_gw[0],
-        metrics={
-            'mtu': 1500,
-            'hoplimit': 16
-        }
-    )
 
 def writeconf(template,target,**kw):
 
