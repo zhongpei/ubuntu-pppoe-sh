@@ -8,14 +8,16 @@ echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure --frontend noninteracti
 
 cp pap-secrets.tp /etc/ppp/pap-secrets.tp
 cp dsl-provider.tp /etc/ppp/peers/dsl-provider.tp
-cp -r ./endpoints /endpoints
+#cp -r ./endpoints /endpoints
 
 apt-get update -y
 
 apt-get install -y -q gcc make wget python python-pip pppoe git python-dev
 apt-get install -y -q net-tools pppoeconf
 apt-get install -y -q rsyslog
-pip install -r requestments.txt -i http://pypi.douban.com/simple/ 
-
+export LC_ALL="C"
+pip install -r requestments.txt -i http://pypi.douban.com/simple/  --trusted-host pypi.douban.com
+./build.sh
+cp ./dist/* /usr/local/sbin
 #apt-get purge -y -q --auto-remove gcc make
 service rsyslog start
