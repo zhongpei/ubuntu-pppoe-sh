@@ -27,8 +27,8 @@ def writeconf(template,target,**kw):
 
 def init_pppoe(args , status_loop = 60):
     c = Commander()
-    c.command2("poff -a")
-    c.command2("killall -9 pppoe")
+    c.command2("poff -a 2 > /dev/null")
+    c.command2("killall -9 pppoe 2 > /dev/null")
 
     if args.get("<username>") is None:
         logging.error("not have pppoe-username")

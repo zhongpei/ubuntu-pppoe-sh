@@ -13,7 +13,7 @@ cp dsl-provider.tp /etc/ppp/peers/dsl-provider.tp
 apt-get update -y
 
 apt-get install -y -q gcc make wget python python-pip pppoe git python-dev
-apt-get install -y -q net-tools pppoeconf
+apt-get install -y -q net-tools pppoeconf psmisc
 apt-get install -y -q rsyslog
 export LC_ALL="C"
 pip install -r requestments.txt -i http://pypi.douban.com/simple/  --trusted-host pypi.douban.com
